@@ -24,7 +24,31 @@
     <link rel="manifest" href="manifest.json">
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
 
+
+    <style>
+        #protected-content {
+            display: none;
+        }
+    </style>
     <script>
+
+
+        //password
+        const PASSWORD = "ohana2024"; // Replace this with your desired password
+
+        function checkPassword() {
+            const inputPassword = document.getElementById('password-input').value;
+
+            if (inputPassword === PASSWORD) {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('protected-content').style.display = 'block';
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
+
+
+
         // load css files from CDN if local node_modules fail
         function loadCssFromCDN(css) {
             // create new link tag
@@ -60,7 +84,21 @@
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
-<body id="top">
+<body id="top" onload="document.getElementById('password-input').focus();">
+
+    <div id="login-form">
+        <h1>Please enter the password:</h1>
+        <input type="password" id="password-input">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <div id="protected-content">
+        <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+            your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -89,6 +127,7 @@
                     <a class="nav-toggle" href="#"><span></span></a>
                 </div>
             </div>
+        </div>
         </header>
     </section>
     <div class="container">
